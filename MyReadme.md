@@ -1,7 +1,6 @@
 ## :dizzy: Ejercicio de Taller de Desarrollo Web
 
 - Joaquin Gabriel **Peyronel**
-- Juan Ignacio **Kostecki**
 
 1. Item 1
 2. Item 2
