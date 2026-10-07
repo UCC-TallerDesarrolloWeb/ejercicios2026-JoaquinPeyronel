@@ -1,17 +1,18 @@
-## :dizzy: Ejercicio de Taller de Desarrollo Web
+# 💫 Ejercicio de Taller de Desarrollo Web
+
+## Autor
 
 - Joaquin Gabriel **Peyronel**
-- Juan Ignacio **Kostecki**
-
-1. Item 1
-2. Item 2
-3. Item 3
 
 ## Contenido
 
-Este repositorio contiene ejercicios de practica para taller de desarrollo web
+Este repositorio contiene ejercicios de práctica para Taller de Desarrollo Web.
+
+[Aula Virtual UCC](https://www.ucc.edu.ar/campus-virtual)
 
 [Link a Diapositivas de Clase](https://ucc-tallerdesarrolloweb.github.io/filminas/U1_git_avanzado.html#/)
+
+## Contacto
 
 | Nombre  | Apellido | Email              |
 | ------- | -------- | ------------------ |
