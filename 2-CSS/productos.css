@@ -1,0 +1,19 @@
+.productos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.tarjeta {
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.tarjeta img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+}
