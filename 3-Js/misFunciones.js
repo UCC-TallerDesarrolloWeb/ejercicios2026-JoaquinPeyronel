@@ -7,27 +7,46 @@
  * @param unidad Unidad correspondiente al campo modificado
  * @return No retorna ningún valor
  */
-function convertirUnidad(valor, unidad) {
-    let metros;
+const convertirUnidad = (valor, unidad) => {
+    let metros, pulgadas, pies, yardas;
 
-    if (unidad === "metro") {
-        metros = valor;
+    if (valor.includes(",")) {
+        valor = valor.replace(",", ".");
     }
 
-    if (unidad === "pulgada") {
-        metros = valor * 0.0254;
-    }
+    if (isNaN(valor)) {
+        alert("El valor ingresado es incorrecto");
 
-    if (unidad === "pie") {
-        metros = valor * 0.3048;
-    }
+        metros = "";
+        pulgadas = "";
+        pies = "";
+        yardas = "";
+    } else {
+        valor = parseFloat(valor);
 
-    if (unidad === "yarda") {
-        metros = valor * 0.9144;
+        if (unidad === "metro") {
+            metros = valor;
+        }
+
+        if (unidad === "pulgada") {
+            metros = valor * 0.0254;
+        }
+
+        if (unidad === "pie") {
+            metros = valor * 0.3048;
+        }
+
+        if (unidad === "yarda") {
+            metros = valor * 0.9144;
+        }
+
+        pulgadas = metros / 0.0254;
+        pies = metros / 0.3048;
+        yardas = metros / 0.9144;
     }
 
     document.getElementById("metro").value = metros;
-    document.getElementById("pulgada").value = metros / 0.0254;
-    document.getElementById("pie").value = metros / 0.3048;
-    document.getElementById("yarda").value = metros / 0.9144;
-}
+    document.getElementById("pulgada").value = pulgadas;
+    document.getElementById("pie").value = pies;
+    document.getElementById("yarda").value = yardas;
+};
