@@ -4,18 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Productos</title>
+
     <link rel="stylesheet" href="productos.css">
+
     <script src="../3-Js/tienda.js" defer></script>
-
-    <script>
-        const abrirDialog = () => {
-            document.getElementById("detalleProducto").showModal();
-        };
-
-        const cerrarDialog = () => {
-            document.getElementById("detalleProducto").close();
-        };
-    </script>
 </head>
 
 <body class="grid-container">
@@ -75,7 +67,6 @@
     </aside>
 
     <main class="item4 productos" id="contenedorProductos">
-
     </main>
 
     <footer class="item5">
@@ -83,15 +74,6 @@
     </footer>
 
     <dialog id="detalleProducto">
-        <h2>Detalle del Producto</h2>
-
-        <p>
-            Información del producto seleccionado.
-        </p>
-
-        <button onclick="cerrarDialog()">
-            Cerrar
-        </button>
     </dialog>
 
 </body>

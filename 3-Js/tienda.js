@@ -65,7 +65,7 @@ const productos = [
 const mostrarProductos = () => {
   const contenedor = document.getElementById("contenedorProductos");
 
-  productos.forEach((producto) => {
+  productos.forEach((producto, indice) => {
     const tarjeta = document.createElement("div");
 
     tarjeta.className = "tarjeta";
@@ -74,10 +74,55 @@ const mostrarProductos = () => {
       <img src="${producto.imagen}" alt="${producto.nombre}">
       <h3>${producto.nombre}</h3>
       <p>Precio: $${producto.precio}</p>
+
+      <button onclick="abrirDialog(${indice})">
+        Ver detalle de Producto
+      </button>
     `;
 
     contenedor.appendChild(tarjeta);
   });
+};
+
+const abrirDialog = (indice) => {
+  const producto = productos[indice];
+  const dialog = document.getElementById("detalleProducto");
+
+  dialog.innerHTML = `
+    <h2>${producto.nombre}</h2>
+
+    <img
+      src="${producto.imagen}"
+      alt="${producto.nombre}"
+      width="250">
+
+    <p>${producto.description}</p>
+
+    <p>
+      <strong>Marca:</strong>
+      ${producto.marca}
+    </p>
+
+    <p>
+      <strong>Categoría:</strong>
+      ${producto.categoria}
+    </p>
+
+    <p>
+      <strong>Precio:</strong>
+      $${producto.precio}
+    </p>
+
+    <button onclick="cerrarDialog()">
+      Cerrar
+    </button>
+  `;
+
+  dialog.showModal();
+};
+
+const cerrarDialog = () => {
+  document.getElementById("detalleProducto").close();
 };
 
 window.onload = mostrarProductos;
