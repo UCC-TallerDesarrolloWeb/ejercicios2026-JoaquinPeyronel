@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Productos</title>
+    <link rel="stylesheet" href="productos.css">
+</head>
+
+<body class="grid-container">
+
+    <header class="item1">
+        <h1>Productos</h1>
+    </header>
+
+    <nav class="item2">
+        <button class="boton catalogo">Catálogo</button>
+        <button class="boton carrito">Carrito de Compras</button>
+    </nav>
+
+    <aside class="item3">
+
+        <fieldset>
+            <legend>Búsqueda</legend>
+
+            <label for="buscar">Buscar:</label>
+            <input type="text" id="buscar" name="buscar">
+        </fieldset>
+
+        <fieldset>
+            <legend>Precios</legend>
+
+            <p>
+                <label for="minimo">Mínimo:</label>
+                <input type="number" id="minimo" name="minimo">
+            </p>
+
+            <p>
+                <label for="maximo">Máximo:</label>
+                <input type="number" id="maximo" name="maximo">
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Tipo de Productos</legend>
+
+            <p>
+                <input type="checkbox" id="protectores" name="tipo" value="protectores">
+                <label for="protectores">Protectores</label>
+            </p>
+
+            <p>
+                <input type="checkbox" id="entrenamiento" name="tipo" value="entrenamiento">
+                <label for="entrenamiento">Entrenamiento</label>
+            </p>
+
+            <p>
+                <input type="checkbox" id="doboks" name="tipo" value="doboks">
+                <label for="doboks">Doboks</label>
+            </p>
+
+        </fieldset>
+
+    </aside>
+
+    <main class="item4 productos">
+        <div class="tarjeta">
+            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/cabezal-cerrado.webp"
+                alt="Cabezal">
+            <h3>Cabezal</h3>
+        </div>
+
+        <div class="tarjeta">
+            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/escudo-potencia.webp"
+                alt="Escudo de Potencia">
+            <h3>Escudo de Potencia</h3>
+        </div>
+
+        <div class="tarjeta">
+            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/foco-con-dedos.webp"
+                alt="Foco con Dedos">
+            <h3>Foco con Dedos</h3>
+        </div>
+
+        <div class="tarjeta">
+            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/protectores-manos.webp"
+                alt="Protectores de Manos">
+            <h3>Protectores de Manos</h3>
+        </div>
+
+        <div class="tarjeta">
+            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/dobok.webp" alt="Dobok">
+            <h3>Dobok</h3>
+        </div>
+
+        <div class="tarjeta">
+            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/protectores-pie.webp"
+                alt="Protectores de Pie">
+            <h3>Protectores de Pie</h3>
+        </div>
+    </main>
+    <footer class="item5">
+        Pie de página
+    </footer>
+
+</body>
+
+</html>
