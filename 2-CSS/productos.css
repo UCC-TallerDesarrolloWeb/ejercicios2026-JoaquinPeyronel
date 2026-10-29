@@ -1,3 +1,37 @@
+:root {
+    --color-catalogo: darkred;
+    --color-carrito: darkblue;
+    --color-texto: white;
+}
+
+.boton {
+    color: var(--color-texto);
+    border: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    transition: background-color 0.5s, padding 0.5s;
+}
+
+.catalogo {
+    background-color: var(--color-catalogo);
+}
+
+.carrito {
+    background-color: var(--color-carrito);
+}
+
+.boton:hover {
+    padding: 15px 20px;
+}
+
+.catalogo:hover {
+    background-color: red;
+}
+
+.carrito:hover {
+    background-color: blue;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
