@@ -43,6 +43,11 @@ const convertirUnidad = (valor, unidad) => {
         pulgadas = metros / 0.0254;
         pies = metros / 0.3048;
         yardas = metros / 0.9144;
+
+        metros = metros.toFixed(2);
+        pulgadas = pulgadas.toFixed(2);
+        pies = pies.toFixed(2);
+        yardas = yardas.toFixed(2);
     }
 
     document.getElementById("metro").value = metros;
