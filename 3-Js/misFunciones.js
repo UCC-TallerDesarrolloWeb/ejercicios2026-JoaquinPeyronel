@@ -1,3 +1,12 @@
+/**
+ * Convierte un valor entre metros, pulgadas, pies y yardas
+ * y actualiza los campos del conversor.
+ *
+ * @method convertirUnidad
+ * @param valor Valor numérico ingresado por el usuario
+ * @param unidad Unidad correspondiente al campo modificado
+ * @return No retorna ningún valor
+ */
 function convertirUnidad(valor, unidad) {
     let metros;
 
