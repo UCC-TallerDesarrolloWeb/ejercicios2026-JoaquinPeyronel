@@ -7,7 +7,7 @@ const productos = [
     talle: ["1", "2", "3"],
     precio: 35000,
     web: "https://www.granmarctiendaonline.com.ar/productos/cabezal-cerrado/",
-    imagen: "cabezal-cerrado.webp",
+    imagen: "https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/cabezal-cerrado.webp",
   },
   {
     nombre: "Dobok Dan",
@@ -17,7 +17,7 @@ const productos = [
     talle: ["1", "2", "3", "4", "5", "6", "7", "8"],
     precio: 115000,
     web: "https://www.daedo.com/products/taitf-10813",
-    imagen: "dobok.webp",
+    imagen: "https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/dobok.webp",
   },
   {
     nombre: "Escudo de Potencia",
@@ -27,7 +27,7 @@ const productos = [
     talle: ["s/talle"],
     precio: 51700,
     web: "https://www.granmarctiendaonline.com.ar/productos/escudo-de-potencia-grande/",
-    imagen: "escudo-potencia.webp",
+    imagen: "https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/escudo-potencia.webp",
   },
   {
     nombre: "Par de focos redondos",
@@ -37,7 +37,7 @@ const productos = [
     talle: ["s/talle"],
     precio: 15000,
     web: "https://www.granmarctiendaonline.com.ar/productos/foco-con-dedos/",
-    imagen: "foco-con-dedos.webp",
+    imagen: "https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/foco-con-dedos.webp",
   },
   {
     nombre: "Guantes 10 onzas",
@@ -48,7 +48,7 @@ const productos = [
     talle: ["s/talle"],
     precio: 35000,
     web: "https://www.daedo.com/products/pritf-2020",
-    imagen: "protectores-manos.webp",
+    imagen: "https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/protectores-manos.webp",
   },
   {
     nombre: "Protectores Pie",
@@ -58,6 +58,26 @@ const productos = [
     talle: ["XXS", "XS", "S", "M", "L", "XL"],
     precio: 35000,
     web: "https://www.daedo.com/collections/collection-itf-gloves/products/pritf-2022",
-    imagen: "protectores-manos.webp",
+    imagen: "https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/protectores-pie.webp",
   },
 ];
+
+const mostrarProductos = () => {
+  const contenedor = document.getElementById("contenedorProductos");
+
+  productos.forEach((producto) => {
+    const tarjeta = document.createElement("div");
+
+    tarjeta.className = "tarjeta";
+
+    tarjeta.innerHTML = `
+      <img src="${producto.imagen}" alt="${producto.nombre}">
+      <h3>${producto.nombre}</h3>
+      <p>Precio: $${producto.precio}</p>
+    `;
+
+    contenedor.appendChild(tarjeta);
+  });
+};
+
+window.onload = mostrarProductos;
