@@ -65,6 +65,10 @@ const productos = [
 const mostrarProductos = () => {
   const contenedor = document.getElementById("contenedorProductos");
 
+  if (!contenedor) {
+    return;
+  }
+
   productos.forEach((producto, indice) => {
     const tarjeta = document.createElement("div");
 
@@ -77,6 +81,10 @@ const mostrarProductos = () => {
 
       <button onclick="abrirDialog(${indice})">
         Ver detalle de Producto
+      </button>
+
+      <button onclick="agregarAlCarrito(${indice})">
+        Agregar al carrito
       </button>
     `;
 
@@ -97,21 +105,9 @@ const abrirDialog = (indice) => {
       width="250">
 
     <p>${producto.description}</p>
-
-    <p>
-      <strong>Marca:</strong>
-      ${producto.marca}
-    </p>
-
-    <p>
-      <strong>Categoría:</strong>
-      ${producto.categoria}
-    </p>
-
-    <p>
-      <strong>Precio:</strong>
-      $${producto.precio}
-    </p>
+    <p><strong>Marca:</strong> ${producto.marca}</p>
+    <p><strong>Categoría:</strong> ${producto.categoria}</p>
+    <p><strong>Precio:</strong> $${producto.precio}</p>
 
     <button onclick="cerrarDialog()">
       Cerrar
@@ -125,4 +121,43 @@ const cerrarDialog = () => {
   document.getElementById("detalleProducto").close();
 };
 
-window.onload = mostrarProductos;
+const agregarAlCarrito = (indice) => {
+  const producto = productos[indice];
+
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  carrito.push(producto);
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+
+  alert("Producto agregado al carrito");
+};
+
+const mostrarCarrito = () => {
+  const contenedor = document.getElementById("contenedorCarrito");
+
+  if (!contenedor) {
+    return;
+  }
+
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  carrito.forEach((producto) => {
+    const tarjeta = document.createElement("div");
+
+    tarjeta.className = "tarjeta";
+
+    tarjeta.innerHTML = `
+      <img src="${producto.imagen}" alt="${producto.nombre}">
+      <h3>${producto.nombre}</h3>
+      <p>Precio: $${producto.precio}</p>
+    `;
+
+    contenedor.appendChild(tarjeta);
+  });
+};
+
+window.onload = () => {
+  mostrarProductos();
+  mostrarCarrito();
+};

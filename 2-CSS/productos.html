@@ -6,7 +6,6 @@
     <title>Productos</title>
 
     <link rel="stylesheet" href="productos.css">
-
     <script src="../3-Js/tienda.js" defer></script>
 </head>
 
@@ -17,8 +16,15 @@
     </header>
 
     <nav class="item2">
-        <button class="boton catalogo">Catálogo</button>
-        <button class="boton carrito">Carrito de Compras</button>
+        <button class="boton catalogo">
+            Catálogo
+        </button>
+
+        <button
+            class="boton carrito"
+            onclick="window.location.href='carrito.html'">
+            Carrito de Compras
+        </button>
     </nav>
 
     <aside class="item3">
@@ -66,7 +72,9 @@
 
     </aside>
 
-    <main class="item4 productos" id="contenedorProductos">
+    <main
+        class="item4 productos"
+        id="contenedorProductos">
     </main>
 
     <footer class="item5">
