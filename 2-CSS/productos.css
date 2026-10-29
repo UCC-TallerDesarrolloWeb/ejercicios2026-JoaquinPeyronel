@@ -48,3 +48,12 @@
     height: 250px;
     object-fit: contain;
 }
+
+.item3 fieldset {
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.item3 input {
+    margin: 5px;
+}

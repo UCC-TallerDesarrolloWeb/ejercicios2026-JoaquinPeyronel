@@ -18,7 +18,48 @@
     </nav>
 
     <aside class="item3">
-        Posición para futuros filtros
+
+        <fieldset>
+            <legend>Búsqueda</legend>
+
+            <label for="buscar">Buscar:</label>
+            <input type="text" id="buscar" name="buscar">
+        </fieldset>
+
+        <fieldset>
+            <legend>Precios</legend>
+
+            <p>
+                <label for="minimo">Mínimo:</label>
+                <input type="number" id="minimo" name="minimo">
+            </p>
+
+            <p>
+                <label for="maximo">Máximo:</label>
+                <input type="number" id="maximo" name="maximo">
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Tipo de Productos</legend>
+
+            <p>
+                <input type="checkbox" id="protectores" name="tipo" value="protectores">
+                <label for="protectores">Protectores</label>
+            </p>
+
+            <p>
+                <input type="checkbox" id="entrenamiento" name="tipo" value="entrenamiento">
+                <label for="entrenamiento">Entrenamiento</label>
+            </p>
+
+            <p>
+                <input type="checkbox" id="doboks" name="tipo" value="doboks">
+                <label for="doboks">Doboks</label>
+            </p>
+
+        </fieldset>
+
     </aside>
 
     <main class="item4 productos">
