@@ -5,6 +5,16 @@
     <meta charset="UTF-8">
     <title>Productos</title>
     <link rel="stylesheet" href="productos.css">
+
+    <script>
+        const abrirDialog = () => {
+            document.getElementById("detalleProducto").showModal();
+        };
+
+        const cerrarDialog = () => {
+            document.getElementById("detalleProducto").close();
+        };
+    </script>
 </head>
 
 <body class="grid-container">
@@ -64,44 +74,76 @@
     </aside>
 
     <main class="item4 productos">
+
         <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/cabezal-cerrado.webp"
+            <img
+                src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/cabezal-cerrado.webp"
                 alt="Cabezal">
+
             <h3>Cabezal</h3>
+
+            <button onclick="abrirDialog()">
+                Ver detalle de Producto
+            </button>
         </div>
 
         <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/escudo-potencia.webp"
+            <img
+                src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/escudo-potencia.webp"
                 alt="Escudo de Potencia">
+
             <h3>Escudo de Potencia</h3>
         </div>
 
         <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/foco-con-dedos.webp"
+            <img
+                src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/foco-con-dedos.webp"
                 alt="Foco con Dedos">
+
             <h3>Foco con Dedos</h3>
         </div>
 
         <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/protectores-manos.webp"
+            <img
+                src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/protectores-manos.webp"
                 alt="Protectores de Manos">
+
             <h3>Protectores de Manos</h3>
         </div>
 
         <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/dobok.webp" alt="Dobok">
+            <img
+                src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/dobok.webp"
+                alt="Dobok">
+
             <h3>Dobok</h3>
         </div>
 
         <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/protectores-pie.webp"
+            <img
+                src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/protectores-pie.webp"
                 alt="Protectores de Pie">
+
             <h3>Protectores de Pie</h3>
         </div>
+
     </main>
+
     <footer class="item5">
         Pie de página
     </footer>
+
+    <dialog id="detalleProducto">
+        <h2>Detalle del Producto</h2>
+
+        <p>
+            Información del producto seleccionado.
+        </p>
+
+        <button onclick="cerrarDialog()">
+            Cerrar
+        </button>
+    </dialog>
 
 </body>
 
