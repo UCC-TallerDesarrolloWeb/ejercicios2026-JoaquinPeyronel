@@ -1,0 +1,39 @@
+
+$color-primario: #007bff;
+$color-blanco: #ffffff;
+$color-texto: #333333;
+$color-secundario: #666666;
+
+.card-actividad {
+  background-color: $color-blanco;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  .card-actividad-header {
+    h2 {
+      color: $color-primario;
+      text-transform: capitalize;
+      margin-top: 0;
+    }
+
+    p {
+      color: $color-secundario;
+    }
+  }
+
+  .card-actividad-body {
+    h3 {
+      color: $color-texto;
+      font-size: 18px;
+    }
+
+    ul {
+      padding-left: 20px;
+
+      li {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
