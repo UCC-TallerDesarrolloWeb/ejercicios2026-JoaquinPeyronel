@@ -1,10 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <title>Productos</title>
+
     <link rel="stylesheet" href="productos.css">
+    <script src="../3-Js/tienda.js" defer></script>
 </head>
 
 <body class="grid-container">
@@ -14,8 +17,17 @@
     </header>
 
     <nav class="item2">
-        <button class="boton catalogo">Catálogo</button>
-        <button class="boton carrito">Carrito de Compras</button>
+        <button class="boton catalogo">
+            Catálogo
+        </button>
+
+        <button
+            class="boton carrito"
+            onclick="window.location.href='carrito.html'">
+            Carrito de Compras
+        </button>
+
+        <span id="contadorCarrito">0</span>
     </nav>
 
     <aside class="item3">
@@ -24,7 +36,12 @@
             <legend>Búsqueda</legend>
 
             <label for="buscar">Buscar:</label>
-            <input type="text" id="buscar" name="buscar">
+            <input
+                type="text"
+                id="buscar"
+                name="buscar"
+                oninput="filtrarProductos()"
+                placeholder="Buscar producto">
         </fieldset>
 
         <fieldset>
@@ -32,76 +49,96 @@
 
             <p>
                 <label for="minimo">Mínimo:</label>
-                <input type="number" id="minimo" name="minimo">
+                <input
+                    type="number"
+                    id="minimo"
+                    name="minimo"
+                    min="0"
+                    oninput="filtrarProductos()">
             </p>
 
             <p>
                 <label for="maximo">Máximo:</label>
-                <input type="number" id="maximo" name="maximo">
+                <input
+                    type="number"
+                    id="maximo"
+                    name="maximo"
+                    min="0"
+                    oninput="filtrarProductos()">
             </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Marca</legend>
+
+            <label for="marca">Seleccionar marca:</label>
+
+            <select id="marca" onchange="filtrarProductos()">
+                <option value="">Todas las marcas</option>
+                <option value="Gran Marc">Gran Marc</option>
+                <option value="Daedo">Daedo</option>
+            </select>
         </fieldset>
 
         <fieldset>
             <legend>Tipo de Productos</legend>
 
             <p>
-                <input type="checkbox" id="protectores" name="tipo" value="protectores">
+                <input
+                    type="checkbox"
+                    id="protectores"
+                    name="tipo"
+                    value="Protectores"
+                    onchange="filtrarProductos()">
                 <label for="protectores">Protectores</label>
             </p>
 
             <p>
-                <input type="checkbox" id="entrenamiento" name="tipo" value="entrenamiento">
+                <input
+                    type="checkbox"
+                    id="entrenamiento"
+                    name="tipo"
+                    value="Entrenamiento"
+                    onchange="filtrarProductos()">
                 <label for="entrenamiento">Entrenamiento</label>
             </p>
 
             <p>
-                <input type="checkbox" id="doboks" name="tipo" value="doboks">
+                <input
+                    type="checkbox"
+                    id="doboks"
+                    name="tipo"
+                    value="Dobok"
+                    onchange="filtrarProductos()">
                 <label for="doboks">Doboks</label>
             </p>
+        </fieldset>
 
+        <fieldset>
+            <legend>Ordenar catálogo</legend>
+
+            <label for="ordenar">Ordenar por:</label>
+
+            <select id="ordenar" onchange="ordenarProductos()">
+                <option value="">Orden original</option>
+                <option value="precioAsc">Precio: menor a mayor</option>
+                <option value="precioDesc">Precio: mayor a menor</option>
+                <option value="nombreAsc">Nombre: A-Z</option>
+                <option value="nombreDesc">Nombre: Z-A</option>
+            </select>
         </fieldset>
 
     </aside>
 
-    <main class="item4 productos">
-        <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/cabezal-cerrado.webp"
-                alt="Cabezal">
-            <h3>Cabezal</h3>
-        </div>
-
-        <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/escudo-potencia.webp"
-                alt="Escudo de Potencia">
-            <h3>Escudo de Potencia</h3>
-        </div>
-
-        <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/foco-con-dedos.webp"
-                alt="Foco con Dedos">
-            <h3>Foco con Dedos</h3>
-        </div>
-
-        <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/protectores-manos.webp"
-                alt="Protectores de Manos">
-            <h3>Protectores de Manos</h3>
-        </div>
-
-        <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/dobok.webp" alt="Dobok">
-            <h3>Dobok</h3>
-        </div>
-
-        <div class="tarjeta">
-            <img src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/protectores-pie.webp"
-                alt="Protectores de Pie">
-            <h3>Protectores de Pie</h3>
-        </div>
+    <main class="item4 productos" id="contenedorProductos">
     </main>
+
     <footer class="item5">
         Pie de página
     </footer>
+
+    <dialog id="detalleProducto">
+    </dialog>
 
 </body>
 
