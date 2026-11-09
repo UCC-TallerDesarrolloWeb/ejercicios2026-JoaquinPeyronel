@@ -62,6 +62,17 @@ const productos = [
   },
 ];
 
+// FORMATEAR PRECIOS
+
+const formatearPrecio = (precio) => {
+  const formato = new Intl.NumberFormat("es-AR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+
+  return "$" + formato.format(precio);
+};
+
 // MOSTRAR PRODUCTOS DEL CATÁLOGO
 
 const mostrarProductos = (listaProductos = productos) => {
@@ -87,7 +98,7 @@ const mostrarProductos = (listaProductos = productos) => {
     tarjeta.innerHTML = `
       <img src="${producto.imagen}" alt="${producto.nombre}">
       <h3>${producto.nombre}</h3>
-      <p>Precio: $${producto.precio}</p>
+      <p>Precio: ${formatearPrecio(producto.precio)}</p>
 
       <button onclick="abrirDialog(${indice})">
         Ver detalle de Producto
@@ -117,7 +128,6 @@ const filtrarProductos = () => {
   ).map((checkbox) => checkbox.value);
 
   const productosFiltrados = productos.filter((producto) => {
-
     const coincidePalabra =
       producto.nombre.toLowerCase().includes(palabra);
 
@@ -162,7 +172,7 @@ const abrirDialog = (indice) => {
     <p>${producto.description}</p>
     <p><strong>Marca:</strong> ${producto.marca}</p>
     <p><strong>Categoría:</strong> ${producto.categoria}</p>
-    <p><strong>Precio:</strong> $${producto.precio}</p>
+    <p><strong>Precio:</strong> ${formatearPrecio(producto.precio)}</p>
 
     <button onclick="cerrarDialog()">
       Cerrar
@@ -187,7 +197,23 @@ const agregarAlCarrito = (indice) => {
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
 
+  actualizarContadorCarrito();
+
   alert("Producto agregado al carrito");
+};
+
+// ACTUALIZAR CONTADOR DEL CARRITO
+
+const actualizarContadorCarrito = () => {
+  const contador = document.getElementById("contadorCarrito");
+
+  if (!contador) {
+    return;
+  }
+
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  contador.textContent = carrito.length;
 };
 
 // MOSTRAR PRODUCTOS DEL CARRITO
@@ -205,6 +231,7 @@ const mostrarCarrito = () => {
 
   if (carrito.length === 0) {
     contenedor.innerHTML = "<p>El carrito está vacío.</p>";
+    actualizarContadorCarrito();
     return;
   }
 
@@ -215,7 +242,7 @@ const mostrarCarrito = () => {
     tarjeta.innerHTML = `
       <img src="${producto.imagen}" alt="${producto.nombre}">
       <h3>${producto.nombre}</h3>
-      <p>Precio: $${producto.precio}</p>
+      <p>Precio: ${formatearPrecio(producto.precio)}</p>
 
       <button onclick="eliminarProducto(${indice})">
         Eliminar producto
@@ -224,13 +251,17 @@ const mostrarCarrito = () => {
 
     contenedor.appendChild(tarjeta);
   });
+
+  actualizarContadorCarrito();
 };
 
 // VACIAR CARRITO
 
 const vaciarCarrito = () => {
   localStorage.removeItem("carrito");
+
   mostrarCarrito();
+  actualizarContadorCarrito();
 };
 
 // ELIMINAR PRODUCTO
@@ -243,6 +274,7 @@ const eliminarProducto = (indice) => {
   localStorage.setItem("carrito", JSON.stringify(carrito));
 
   mostrarCarrito();
+  actualizarContadorCarrito();
 };
 
 // CARGAR PÁGINA
@@ -250,4 +282,5 @@ const eliminarProducto = (indice) => {
 window.onload = () => {
   mostrarProductos();
   mostrarCarrito();
+  actualizarContadorCarrito();
 };
