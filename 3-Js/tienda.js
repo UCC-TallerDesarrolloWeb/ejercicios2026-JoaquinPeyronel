@@ -64,7 +64,7 @@ const productos = [
 
 // MOSTRAR PRODUCTOS DEL CATÁLOGO
 
-const mostrarProductos = () => {
+const mostrarProductos = (listaProductos = productos) => {
   const contenedor = document.getElementById("contenedorProductos");
 
   if (!contenedor) {
@@ -73,9 +73,15 @@ const mostrarProductos = () => {
 
   contenedor.innerHTML = "";
 
-  productos.forEach((producto, indice) => {
-    const tarjeta = document.createElement("div");
+  if (listaProductos.length === 0) {
+    contenedor.innerHTML = "<p>No se encontraron productos.</p>";
+    return;
+  }
 
+  listaProductos.forEach((producto) => {
+    const indice = productos.indexOf(producto);
+
+    const tarjeta = document.createElement("div");
     tarjeta.className = "tarjeta";
 
     tarjeta.innerHTML = `
@@ -94,6 +100,49 @@ const mostrarProductos = () => {
 
     contenedor.appendChild(tarjeta);
   });
+};
+
+// FILTRAR PRODUCTOS
+
+const filtrarProductos = () => {
+  const palabra = document.getElementById("buscar").value.toLowerCase().trim();
+
+  const minimoTexto = document.getElementById("minimo").value;
+  const maximoTexto = document.getElementById("maximo").value;
+
+  const marca = document.getElementById("marca").value;
+
+  const categorias = Array.from(
+    document.querySelectorAll('input[name="tipo"]:checked')
+  ).map((checkbox) => checkbox.value);
+
+  const productosFiltrados = productos.filter((producto) => {
+
+    const coincidePalabra =
+      producto.nombre.toLowerCase().includes(palabra);
+
+    const coincideMinimo =
+      minimoTexto === "" || producto.precio >= Number(minimoTexto);
+
+    const coincideMaximo =
+      maximoTexto === "" || producto.precio <= Number(maximoTexto);
+
+    const coincideMarca =
+      marca === "" || producto.marca === marca;
+
+    const coincideCategoria =
+      categorias.length === 0 || categorias.includes(producto.categoria);
+
+    return (
+      coincidePalabra &&
+      coincideMinimo &&
+      coincideMaximo &&
+      coincideMarca &&
+      coincideCategoria
+    );
+  });
+
+  mostrarProductos(productosFiltrados);
 };
 
 // MOSTRAR DETALLE DEL PRODUCTO
@@ -127,7 +176,7 @@ const cerrarDialog = () => {
   document.getElementById("detalleProducto").close();
 };
 
-// AGREGAR PRODUCTO AL CARRITO
+// AGREGAR PRODUCTOS AL CARRITO
 
 const agregarAlCarrito = (indice) => {
   const producto = productos[indice];
@@ -161,7 +210,6 @@ const mostrarCarrito = () => {
 
   carrito.forEach((producto, indice) => {
     const tarjeta = document.createElement("div");
-
     tarjeta.className = "tarjeta";
 
     tarjeta.innerHTML = `
@@ -178,15 +226,14 @@ const mostrarCarrito = () => {
   });
 };
 
-// VACIAR TODO EL CARRITO
+// VACIAR CARRITO
 
 const vaciarCarrito = () => {
   localStorage.removeItem("carrito");
-
   mostrarCarrito();
 };
 
-// ELIMINAR UN PRODUCTO DEL CARRITO
+// ELIMINAR PRODUCTO
 
 const eliminarProducto = (indice) => {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -198,7 +245,7 @@ const eliminarProducto = (indice) => {
   mostrarCarrito();
 };
 
-// CARGAR LA PÁGINA
+// CARGAR PÁGINA
 
 window.onload = () => {
   mostrarProductos();
