@@ -2,10 +2,12 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Layout from "@/components/Layout";
+
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
 import Actividades from "@/pages/Actividades";
 import Poke from "@/pages/Poke";
+import Store from "@/pages/Store";
 
 function App() {
   return (
@@ -13,9 +15,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+
           <Route path="login" element={<Login />} />
+
           <Route path="actividades" element={<Actividades />} />
+
           <Route path="poke" element={<Poke />} />
+
+          <Route path="store" element={<Store />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

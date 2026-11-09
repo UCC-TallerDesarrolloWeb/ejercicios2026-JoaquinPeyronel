@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
 import "@/styles/Layout.scss";
 
 function Layout() {
@@ -18,18 +19,22 @@ function Layout() {
   };
 
   return (
-    <div className="layout">
+    <>
       <Header
         logueado={logueado}
         cerrarSesion={cerrarSesion}
       />
 
-      <main className="layout-main">
-        <Outlet context={{ logueado, iniciarSesion }} />
-      </main>
+      <Outlet
+        context={{
+          logueado,
+          iniciarSesion,
+          cerrarSesion,
+        }}
+      />
 
       <Footer />
-    </div>
+    </>
   );
 }
 
