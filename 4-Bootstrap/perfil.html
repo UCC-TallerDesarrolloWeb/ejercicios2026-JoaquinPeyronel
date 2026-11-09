@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Componente Perfil - Bootstrap</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        .perfil-card {
+            width: 320px;
+            max-width: 100%;
+        }
+
+        .portada {
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .profile {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            bottom: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid white;
+            background-color: #e9ecef;
+            font-size: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .perfil-info {
+            padding-top: 55px;
+        }
+    </style>
+
+</head>
+
+<body class="bg-light">
+
+    <div class="d-flex justify-content-center my-5 px-3">
+
+        <div class="card perfil-card shadow-sm">
+
+            <!-- PORTADA Y FOTO DE PERFIL -->
+
+            <div class="position-relative">
+
+                <img
+                    src="https://www.80stoystore.com/wp-content/uploads/2019/09/super-mario-bros.jpg"
+                    class="card-img-top portada"
+                    alt="Portada de videojuego Super Mario Bros">
+
+                <div class="profile rounded-circle">
+                    👩🏻‍💼
+                </div>
+
+            </div>
+
+            <!-- INFORMACION DEL PERFIL -->
+
+            <div class="card-body text-center perfil-info">
+
+                <h5 class="card-title fw-bold">
+                    Agustina Aliciardi
+                </h5>
+
+                <p class="card-text text-secondary">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    In pulvinar lacus risus, et convallis ante sodales eget.
+                    Nulla ornare dui non tellus varius tincidunt.
+                </p>
+
+                <a href="#" class="btn btn-primary">
+                    Ver perfil
+                </a>
+
+            </div>
+
+            <!-- OPCIONES DEL PERFIL -->
+
+            <ul class="list-group list-group-flush">
+
+                <li class="list-group-item list-group-item-action">
+
+                    <a href="#" class="text-decoration-none text-secondary d-flex align-items-center gap-2">
+
+                        <i class="bi bi-chat-left-text"></i>
+
+                        Ir a mensajes
+
+                    </a>
+
+                </li>
+
+                <li class="list-group-item list-group-item-action">
+
+                    <a href="#" class="text-decoration-none text-secondary d-flex align-items-center gap-2">
+
+                        <i class="bi bi-bell"></i>
+
+                        Notificaciones
+
+                        <span class="badge bg-danger ms-auto">
+                            +99
+                        </span>
+
+                    </a>
+
+                </li>
+
+                <li class="list-group-item list-group-item-action">
+
+                    <a href="#" class="text-decoration-none text-secondary d-flex align-items-center gap-2">
+
+                        <i class="bi bi-people-fill"></i>
+
+                        Solicitudes Pendientes
+
+                    </a>
+
+                </li>
+
+                <li class="list-group-item list-group-item-action">
+
+                    <a href="#" class="text-decoration-none text-secondary d-flex align-items-center gap-2">
+
+                        <i class="bi bi-camera-video"></i>
+
+                        Llamar
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
