@@ -1,24 +1,46 @@
 
-import { Link } from "react-router-dom";
+import imagen3 from "@/assets/home/imagen3.jpg";
+import imagen4 from "@/assets/home/imagen4.jpg";
+
+import "@/styles/Home.scss";
+
+const actividades = [
+  {
+    nombre: "Taekwondo",
+    imagen: "/home/imagen1.jpg",
+  },
+  {
+    nombre: "Yoga",
+    imagen: "/home/imagen2.jpg",
+  },
+  {
+    nombre: "Zumba",
+    imagen: imagen3,
+  },
+  {
+    nombre: "Entrenamiento Funcional",
+    imagen: imagen4,
+  },
+];
 
 function Home() {
   return (
-    <section className="home">
-      <h1>Bienvenido a nuestra aplicación React</h1>
+    <section className="home-actividades">
+      <h1>Nuestras Actividades</h1>
 
-      <p>
-        En esta aplicación podemos iniciar sesión y consultar
-        las actividades disponibles.
-      </p>
+      <p>Conocé las actividades que tenemos para vos.</p>
 
-      <div className="home-acciones">
-        <Link to="/login" className="enlace-boton">
-          Iniciar Sesión
-        </Link>
+      <div className="home-galeria">
+        {actividades.map((actividad) => (
+          <article className="home-card" key={actividad.nombre}>
+            <img
+              src={actividad.imagen}
+              alt={actividad.nombre}
+            />
 
-        <Link to="/actividades" className="enlace-boton secundario">
-          Ver Actividades
-        </Link>
+            <h2>{actividad.nombre}</h2>
+          </article>
+        ))}
       </div>
     </section>
   );
