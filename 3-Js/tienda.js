@@ -116,6 +116,12 @@ const mostrarProductos = (listaProductos = productos) => {
 // FILTRAR PRODUCTOS
 
 const filtrarProductos = () => {
+  const contenedor = document.getElementById("contenedorProductos");
+
+  if (!contenedor) {
+    return;
+  }
+
   const palabra = document.getElementById("buscar").value
     .toLowerCase()
     .trim();
@@ -154,7 +160,45 @@ const filtrarProductos = () => {
     );
   });
 
-  mostrarProductos(productosFiltrados);
+  // Ordenar la lista filtrada antes de mostrarla.
+  const listaOrdenada = aplicarOrden(productosFiltrados);
+
+  mostrarProductos(listaOrdenada);
+};
+
+// ORDENAR PRODUCTOS
+
+const aplicarOrden = (listaProductos) => {
+  const selector = document.getElementById("ordenar");
+  const orden = selector ? selector.value : "";
+
+  // Copiamos el array para no modificar el catálogo original.
+  const lista = [...listaProductos];
+
+  switch (orden) {
+    case "precioAsc":
+      lista.sort((a, b) => a.precio - b.precio);
+      break;
+
+    case "precioDesc":
+      lista.sort((a, b) => b.precio - a.precio);
+      break;
+
+    case "nombreAsc":
+      lista.sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
+      break;
+
+    case "nombreDesc":
+      lista.sort((a, b) => b.nombre.localeCompare(a.nombre, "es"));
+      break;
+  }
+
+  return lista;
+};
+
+const ordenarProductos = () => {
+  // Reaplicamos los filtros para conservar las búsquedas existentes.
+  filtrarProductos();
 };
 
 // MOSTRAR DETALLE DEL PRODUCTO
@@ -192,11 +236,9 @@ const cerrarDialog = () => {
 
 const agregarAlCarrito = (indice) => {
   const producto = productos[indice];
-
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
   carrito.push(producto);
-
   localStorage.setItem("carrito", JSON.stringify(carrito));
 
   actualizarContadorCarrito();
@@ -231,8 +273,7 @@ const mostrarCarrito = () => {
 
   contenedor.innerHTML = "";
 
-  // Agrupar los productos repetidos y contar sus unidades.
-
+  // Agrupar productos repetidos.
   const productosAgrupados = [];
 
   carrito.forEach((producto) => {
@@ -250,39 +291,37 @@ const mostrarCarrito = () => {
     }
   });
 
-  // Mostrar una tarjeta por cada producto diferente.
-
   if (productosAgrupados.length === 0) {
     contenedor.innerHTML = "<p>El carrito está vacío.</p>";
   } else {
     productosAgrupados.forEach((producto) => {
       const tarjeta = document.createElement("div");
-
       tarjeta.className = "tarjeta";
 
       const subtotal = producto.precio * producto.cantidad;
 
+      // JSON.stringify permite pasar el nombre como argumento.
+      // Usamos comillas dobles en el atributo HTML.
       tarjeta.innerHTML = `
         <img src="${producto.imagen}" alt="${producto.nombre}">
-
         <h3>${producto.nombre}</h3>
-
         <p>Precio unitario: ${formatearPrecio(producto.precio)}</p>
-
         <p><strong>Cantidad: ${producto.cantidad}</strong></p>
-
         <p>Subtotal: ${formatearPrecio(subtotal)}</p>
 
-        <button onclick='eliminarProducto(${JSON.stringify(producto.nombre)})'>
+        <button class="eliminar-producto">
           Eliminar una unidad
         </button>
       `;
 
+      tarjeta.querySelector(".eliminar-producto").addEventListener(
+        "click",
+        () => eliminarProducto(producto.nombre)
+      );
+
       contenedor.appendChild(tarjeta);
     });
   }
-
-  // Calcular el total de todos los productos.
 
   const total = carrito.reduce(
     (acumulador, producto) => acumulador + producto.precio,
@@ -302,7 +341,6 @@ const mostrarCarrito = () => {
 
 const vaciarCarrito = () => {
   localStorage.removeItem("carrito");
-
   mostrarCarrito();
 };
 
@@ -327,7 +365,7 @@ const eliminarProducto = (nombre) => {
 // CARGAR PÁGINA
 
 window.onload = () => {
-  mostrarProductos();
+  filtrarProductos();
   mostrarCarrito();
   actualizarContadorCarrito();
 };

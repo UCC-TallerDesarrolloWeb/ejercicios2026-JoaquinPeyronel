@@ -114,6 +114,20 @@
             </p>
         </fieldset>
 
+        <fieldset>
+            <legend>Ordenar catálogo</legend>
+
+            <label for="ordenar">Ordenar por:</label>
+
+            <select id="ordenar" onchange="ordenarProductos()">
+                <option value="">Orden original</option>
+                <option value="precioAsc">Precio: menor a mayor</option>
+                <option value="precioDesc">Precio: mayor a menor</option>
+                <option value="nombreAsc">Nombre: A-Z</option>
+                <option value="nombreDesc">Nombre: Z-A</option>
+            </select>
+        </fieldset>
+
     </aside>
 
     <main class="item4 productos" id="contenedorProductos">
