@@ -16,10 +16,9 @@ function Header({ logueado, cerrarSesion }) {
 
         <nav>
           <NavLink to="/">Home</NavLink>
-
           <NavLink to="/login">Login</NavLink>
-
           <NavLink to="/actividades">Actividades</NavLink>
+          <NavLink to="/poke">Pokémon</NavLink>
 
           {logueado && (
             <button onClick={logout}>
