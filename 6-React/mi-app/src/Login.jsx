@@ -1,6 +1,7 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+
 import "./styles/Login.scss";
 
 function Login() {
@@ -8,6 +9,7 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  const { iniciarSesion } = useOutletContext();
 
   const ingresar = (evento) => {
     evento.preventDefault();
@@ -15,6 +17,7 @@ function Login() {
     if (usuario === "admin" && password === "admin") {
       console.log("Login OK");
 
+      iniciarSesion();
       navigate("/actividades");
     } else {
       console.log("Login Incorrecto");
@@ -44,7 +47,9 @@ function Login() {
           required
         />
 
-        <button type="submit">Entrar</button>
+        <button type="submit">
+          Entrar
+        </button>
       </form>
     </div>
   );

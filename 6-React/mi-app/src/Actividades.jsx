@@ -1,5 +1,5 @@
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import "./styles/Actividades.scss";
 
 const activities = [
@@ -32,6 +32,11 @@ const diasSemana = [
 
 function Actividades() {
   const navigate = useNavigate();
+  const { logueado } = useOutletContext();
+
+  const inscribirse = (nombreActividad) => {
+    alert(`Te inscribiste en ${nombreActividad}`);
+  };
 
   return (
     <div className="actividades-container">
@@ -41,7 +46,7 @@ function Actividades() {
           <h1>Listado de Actividades</h1>
 
           <button onClick={() => navigate("/")}>
-            Volver al Login
+            Ir al Home
           </button>
         </header>
 
@@ -65,10 +70,20 @@ function Actividades() {
                 {actividad.horarios.map((horario, indice) => (
                   <li key={indice}>
                     <strong>{diasSemana[horario.dia]}:</strong>{" "}
-                    {horario["hora-inicio"]} a {horario["hora-fin"]}
+                    {horario["hora-inicio"]} a{" "}
+                    {horario["hora-fin"]}
                   </li>
                 ))}
               </ul>
+
+              {logueado && (
+                <button
+                  className="btn-inscribirse"
+                  onClick={() => inscribirse(actividad.nombre)}
+                >
+                  Inscribirse
+                </button>
+              )}
             </article>
           ))}
         </div>

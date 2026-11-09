@@ -1,17 +1,15 @@
 
 $color-primario: #007bff;
-$color-fondo: #f2f2f2;
 $color-blanco: #ffffff;
 $color-borde: #cccccc;
 $color-texto: #333333;
 
 .login-container {
-  min-height: 100vh;
+  min-height: 65vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $color-fondo;
-  padding: 20px;
+  padding: 30px 20px;
 
   .login-form {
     width: 350px;
@@ -24,7 +22,7 @@ $color-texto: #333333;
     h2 {
       text-align: center;
       color: $color-texto;
-      margin-bottom: 25px;
+      margin: 0 0 25px;
       font-size: 25px;
     }
 
@@ -35,11 +33,9 @@ $color-texto: #333333;
       border: 1px solid $color-borde;
       border-radius: 5px;
       font-size: 16px;
-      box-sizing: border-box;
 
       &:focus {
-        outline: none;
-        border-color: $color-primario;
+        outline: 2px solid #80bdff;
       }
     }
 
@@ -47,7 +43,7 @@ $color-texto: #333333;
       width: 100%;
       padding: 12px;
       background-color: $color-primario;
-      color: $color-blanco;
+      color: white;
       border: none;
       border-radius: 5px;
       font-size: 16px;
