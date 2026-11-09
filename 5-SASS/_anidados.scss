@@ -1,0 +1,45 @@
+
+@use "variables" as v;
+@use "mixins" as m;
+
+.contenido {
+
+    padding: 30px;
+
+    h2 {
+        color: v.$color-primario;
+        margin-bottom: 15px;
+    }
+
+    p {
+        line-height: 1.6;
+    }
+
+    .tarjetas {
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 25px;
+
+        .tarjeta {
+
+            flex: 1 1 200px;
+            padding: 20px;
+            border-radius: 10px;
+
+            @include m.colores(v.$color-blanco, v.$color-texto);
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+            h3 {
+                color: v.$color-primario;
+                margin-bottom: 10px;
+            }
+
+            p {
+                color: v.$color-secundario;
+            }
+        }
+    }
+}

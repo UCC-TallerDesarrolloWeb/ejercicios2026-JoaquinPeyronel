@@ -1,0 +1,61 @@
+
+@media (max-width: 768px) {
+
+    .contenedor {
+        width: 95%;
+    }
+
+    // ENCABEZADO
+
+    .encabezado {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+
+        nav {
+            ul {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+        }
+    }
+
+    // BIENVENIDA
+
+    .bienvenida {
+        padding: 35px 25px;
+
+        h2 {
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 14px;
+        }
+    }
+
+    // PORTFOLIO
+
+    .portfolio {
+        .galeria {
+            grid-template-columns: 1fr;
+
+            img {
+                height: 250px;
+            }
+        }
+    }
+
+    // SOBRE NOSOTROS
+
+    .sobre-nosotros {
+        padding: 25px 15px;
+    }
+
+    // FOOTER
+
+    footer {
+        padding: 20px 10px;
+    }
+}

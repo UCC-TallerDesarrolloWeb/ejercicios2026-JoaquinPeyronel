@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>YouTube - Bootstrap</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+        crossorigin="anonymous">
+
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+
+        .video-card {
+            width: 420px;
+            max-width: 100%;
+            transition: transform 0.2s ease;
+        }
+
+        .video-card:hover {
+            transform: scale(1.02);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            aspect-ratio: 16 / 12;
+            object-fit: cover;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            background-color: #ffc107;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+        }
+
+        .action-buttons {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .action-buttons,
+        .video-card:focus-within .action-buttons {
+            max-height: 100px;
+            opacity: 1;
+        }
+
+        .action-buttons .btn {
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container my-5">
+
+        <div class="d-flex flex-wrap justify-content-center align-items-start gap-1">
+
+            <!-- VIDEO 1 -->
+
+            <div class="card text-bg-dark border-0 video-card overflow-hidden">
+
+                <img
+                    src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/satoshito89_01.png"
+                    class="card-img-top video-thumbnail"
+                    alt="Miniatura del primer video">
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-2">
+
+                            <div class="avatar rounded-circle">
+                                👩
+                            </div>
+
+                        </div>
+
+                        <div class="col-10">
+
+                            <h6 class="card-title fw-bold fs-6">
+                                Taller de Desarrollo Web - VaciarCarrito y EliminarProducto
+                            </h6>
+
+                            <p class="card-text text-light opacity-50 mb-1">
+                                Taller de Desarrollo Web - Otro Ejercicio
+                            </p>
+
+                            <p class="card-text text-light opacity-50">
+                                230 vistas · 1 día
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="action-buttons">
+
+                        <div class="row mt-2">
+
+                            <div class="col-6">
+
+                                <a href="#"
+                                    class="btn text-secondary text-decoration-none d-block w-100 p-2">
+                                    VER MÁS TARDE
+                                </a>
+
+                            </div>
+
+                            <div class="col-6">
+
+                                <a href="#"
+                                    class="btn text-secondary text-decoration-none d-block w-100 p-2">
+                                    AGREGAR A LA FILA
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- VIDEO 2 -->
+
+            <div class="card text-bg-dark border-0 video-card overflow-hidden">
+
+                <img
+                    src="https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/satoshito89_02.png"
+                    class="card-img-top video-thumbnail"
+                    alt="Miniatura del segundo video">
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-2">
+
+                            <div class="avatar rounded-circle">
+                                👩
+                            </div>
+
+                        </div>
+
+                        <div class="col-10">
+
+                            <h6 class="card-title fw-bold fs-6">
+                                Taller de Desarrollo Web - Otro Ejercicio
+                            </h6>
+
+                            <p class="card-text text-light opacity-50 mb-1">
+                                Taller de Desarrollo Web
+                            </p>
+
+                            <p class="card-text text-light opacity-50">
+                                230 vistas · 1 día
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="action-buttons">
+
+                        <div class="row mt-2">
+
+                            <div class="col-6">
+
+                                <a href="#"
+                                    class="btn text-secondary text-decoration-none d-block w-100 p-2">
+                                    VER MÁS TARDE
+                                </a>
+
+                            </div>
+
+                            <div class="col-6">
+
+                                <a href="#"
+                                    class="btn text-secondary text-decoration-none d-block w-100 p-2">
+                                    AGREGAR A LA FILA
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

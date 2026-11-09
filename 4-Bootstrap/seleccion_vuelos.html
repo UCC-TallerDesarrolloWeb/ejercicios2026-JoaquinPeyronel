@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección de Vuelos</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+        crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+        rel="stylesheet">
+
+    <style>
+        .calendar-container {
+            width: min(850px, calc(100vw - 40px));
+            max-width: 850px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 2px;
+            text-align: center;
+        }
+
+        .calendar-day {
+            width: 38px;
+            height: 38px;
+            max-width: 100%;
+            padding: 0;
+            border: 1px solid #f1f1f1;
+            background-color: white;
+            color: #6c757d;
+            border-radius: 50%;
+        }
+
+        .calendar-day:hover {
+            background-color: #e7f1ff;
+            color: #0d6efd;
+        }
+
+        .calendar-day.selected {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+        .calendar-day.other-month {
+            color: #ced4da;
+        }
+
+        .calendar-weekday {
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 0;
+        }
+
+        @media (max-width: 576px) {
+            .calendar-day {
+                width: 32px;
+                height: 32px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body class="p-4">
+
+    <div class="dropdown">
+
+        <button
+            class="btn btn-primary dropdown-toggle"
+            type="button"
+            id="botonFecha"
+            data-bs-toggle="dropdown"
+            data-bs-auto-close="outside"
+            aria-expanded="false">
+            Selecciona la fecha
+        </button>
+
+        <div class="dropdown-menu p-0 calendar-container">
+
+            <div class="border rounded p-4">
+
+                <h4 class="text-center mb-4">
+                    Fechas de Vuelos
+                </h4>
+
+                <div class="row">
+
+                    <!-- PRIMER MES -->
+
+                    <div class="col-12 col-md-6 border-end">
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+                            <button
+                                class="btn btn-outline-secondary"
+                                type="button"
+                                onclick="cambiarMes(-1)">
+                                <span class="material-symbols-outlined">
+                                    chevron_left
+                                </span>
+                            </button>
+
+                            <span class="fw-bold" id="mes1"></span>
+
+                        </div>
+
+                        <div class="calendar-grid" id="calendario1">
+                        </div>
+
+                    </div>
+
+                    <!-- SEGUNDO MES -->
+
+                    <div class="col-12 col-md-6">
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+                            <span class="fw-bold" id="mes2"></span>
+
+                            <button
+                                class="btn btn-outline-secondary"
+                                type="button"
+                                onclick="cambiarMes(1)">
+                                <span class="material-symbols-outlined">
+                                    chevron_right
+                                </span>
+                            </button>
+
+                        </div>
+
+                        <div class="calendar-grid" id="calendario2">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- BOTONES INFERIORES -->
+
+                <div class="d-flex justify-content-between py-3">
+
+                    <button
+                        class="btn btn-outline-secondary"
+                        type="button"
+                        onclick="cancelarFecha()">
+                        Cancelar
+                    </button>
+
+                    <button
+                        class="btn btn-outline-primary"
+                        type="button"
+                        onclick="guardarFecha()">
+                        Guardar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+    <script>
+        const hoy = new Date();
+
+        let mesActual = new Date(
+            hoy.getFullYear(),
+            hoy.getMonth(),
+            1
+        );
+
+        let fechaSeleccionada = null;
+
+        const nombresMeses = [
+            "Enero", "Febrero", "Marzo", "Abril",
+            "Mayo", "Junio", "Julio", "Agosto",
+            "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+
+        const diasSemana = [
+            "Lun", "Mar", "Mie", "Jue",
+            "Vie", "Sab", "Dom"
+        ];
+
+        // GENERAR CALENDARIO
+
+        const generarCalendario = (fecha, id) => {
+            const contenedor = document.getElementById(id);
+
+            contenedor.innerHTML = "";
+
+            diasSemana.forEach((dia) => {
+                const elemento = document.createElement("div");
+
+                elemento.className = "calendar-weekday";
+                elemento.textContent = dia;
+
+                contenedor.appendChild(elemento);
+            });
+
+            const anio = fecha.getFullYear();
+            const mes = fecha.getMonth();
+
+            const primerDia = new Date(anio, mes, 1);
+
+            // Ajustamos la semana para que comience el lunes.
+            const inicioSemana = (primerDia.getDay() + 6) % 7;
+
+            // Se muestran seis semanas para mantener la grilla.
+            for (let i = 0; i < 42; i++) {
+                const dia = new Date(
+                    anio,
+                    mes,
+                    i - inicioSemana + 1
+                );
+
+                const boton = document.createElement("button");
+
+                boton.type = "button";
+                boton.className = "calendar-day";
+                boton.textContent = dia.getDate();
+
+                if (dia.getMonth() !== mes) {
+                    boton.classList.add("other-month");
+                }
+
+                if (
+                    fechaSeleccionada &&
+                    dia.toDateString() === fechaSeleccionada.toDateString()
+                ) {
+                    boton.classList.add("selected");
+                }
+
+                boton.addEventListener("click", () => {
+                    fechaSeleccionada = dia;
+                    mostrarCalendarios();
+                });
+
+                contenedor.appendChild(boton);
+            }
+        };
+
+        // MOSTRAR LOS DOS MESES
+
+        const mostrarCalendarios = () => {
+            const siguienteMes = new Date(
+                mesActual.getFullYear(),
+                mesActual.getMonth() + 1,
+                1
+            );
+
+            document.getElementById("mes1").textContent =
+                nombresMeses[mesActual.getMonth()] +
+                " " + mesActual.getFullYear();
+
+            document.getElementById("mes2").textContent =
+                nombresMeses[siguienteMes.getMonth()] +
+                " " + siguienteMes.getFullYear();
+
+            generarCalendario(mesActual, "calendario1");
+            generarCalendario(siguienteMes, "calendario2");
+        };
+
+        // CAMBIAR DE MES
+
+        const cambiarMes = (cantidad) => {
+            mesActual = new Date(
+                mesActual.getFullYear(),
+                mesActual.getMonth() + cantidad,
+                1
+            );
+
+            mostrarCalendarios();
+        };
+
+        // CANCELAR SELECCIÓN
+
+        const cancelarFecha = () => {
+            fechaSeleccionada = null;
+
+            mostrarCalendarios();
+
+            const dropdown = bootstrap.Dropdown.getOrCreateInstance(
+                document.getElementById("botonFecha")
+            );
+
+            dropdown.hide();
+        };
+
+        // GUARDAR FECHA
+
+        const guardarFecha = () => {
+            if (!fechaSeleccionada) {
+                alert("Seleccioná una fecha primero.");
+                return;
+            }
+
+            const fechaFormateada =
+                fechaSeleccionada.toLocaleDateString("es-AR");
+
+            document.getElementById("botonFecha").textContent =
+                fechaFormateada;
+
+            const dropdown = bootstrap.Dropdown.getOrCreateInstance(
+                document.getElementById("botonFecha")
+            );
+
+            dropdown.hide();
+        };
+
+        // INICIAR CALENDARIO
+
+        mostrarCalendarios();
+    </script>
+
+</body>
+
+</html>
