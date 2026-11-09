@@ -5,31 +5,44 @@ import PokeCard from "@/components/PokeCard";
 import "@/styles/Poke.scss";
 
 function Poke() {
-  const [pokemon, setPokemon] = useState(null);
+  const [pokemones, setPokemones] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
     const controlador = new AbortController();
 
-    const obtenerPokemon = async () => {
+    const obtenerPokemones = async () => {
       try {
-        const respuesta = await fetch(
-          "https://pokeapi.co/api/v2/pokemon/1",
-          { signal: controlador.signal }
-        );
+        // Creamos las 20 peticiones, una por cada Pokémon.
+        const peticiones = [];
 
-        if (!respuesta.ok) {
-          throw new Error("Error al obtener el Pokémon");
+        for (let i = 1; i <= 20; i++) {
+          peticiones.push(
+            fetch(`https://pokeapi.co/api/v2/pokemon/${i}`, {
+              signal: controlador.signal,
+            })
+          );
         }
 
-        const datos = await respuesta.json();
+        // Esperamos que terminen todas las peticiones.
+        const respuestas = await Promise.all(peticiones);
 
-        setPokemon(datos);
-      } catch (error) {
-        if (error.name !== "AbortError") {
-          console.error(error);
-          setError("No se pudo cargar el Pokémon");
+        // Comprobamos que todas las respuestas sean correctas.
+        if (respuestas.some((respuesta) => !respuesta.ok)) {
+          throw new Error("Error al obtener los Pokémon");
+        }
+
+        // Convertimos las respuestas a objetos JavaScript.
+        const datos = await Promise.all(
+          respuestas.map((respuesta) => respuesta.json())
+        );
+
+        setPokemones(datos);
+      } catch (err) {
+        if (err.name !== "AbortError") {
+          console.error(err);
+          setError("No se pudieron cargar los Pokémon");
         }
       } finally {
         if (!controlador.signal.aborted) {
@@ -38,7 +51,7 @@ function Poke() {
       }
     };
 
-    obtenerPokemon();
+    obtenerPokemones();
 
     return () => controlador.abort();
   }, []);
@@ -47,13 +60,20 @@ function Poke() {
     <section className="poke-container">
       <h1>Pokémon API</h1>
 
-      <p>Información obtenida desde PokeAPI utilizando React.</p>
+      <p>Primeros 20 Pokémon obtenidos desde PokeAPI.</p>
 
       {cargando && <p>Cargando Pokémon...</p>}
 
       {error && <p role="alert">{error}</p>}
 
-      {pokemon && <PokeCard pokemon={pokemon} />}
+      <div className="poke-lista">
+        {pokemones.map((pokemon) => (
+          <PokeCard
+            key={pokemon.id}
+            pokemon={pokemon}
+          />
+        ))}
+      </div>
     </section>
   );
 }

@@ -5,7 +5,7 @@ $color-blanco: #ffffff;
 $color-texto: #333333;
 
 .poke-container {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 40px auto;
   padding: 20px;
   text-align: center;
@@ -13,15 +13,27 @@ $color-texto: #333333;
   h1 {
     color: $color-texto;
     font-size: 32px;
+    margin-bottom: 15px;
   }
 
   > p {
     color: #666666;
+    margin-bottom: 30px;
   }
 
+  // GRILLA DE LOS 20 POKEMON
+
+  .poke-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  // TARJETAS DE POKEMON
+
   .poke-card {
-    max-width: 350px;
-    margin: 30px auto;
+    width: 100%;
+    margin: 0;
     padding: 25px;
     background-color: $color-blanco;
     border: 3px solid $color-principal;
@@ -49,6 +61,11 @@ $color-texto: #333333;
       margin-top: 20px;
     }
 
+    p {
+      color: $color-texto;
+      margin-bottom: 10px;
+    }
+
     ul {
       list-style: none;
       padding: 0;
@@ -61,6 +78,26 @@ $color-texto: #333333;
         border-radius: 15px;
         text-transform: capitalize;
       }
+    }
+  }
+}
+
+// RESPONSIVE PARA CELULARES
+
+@media (max-width: 600px) {
+  .poke-container {
+    padding: 15px;
+
+    h1 {
+      font-size: 26px;
+    }
+
+    .poke-lista {
+      grid-template-columns: 1fr;
+    }
+
+    .poke-card {
+      padding: 20px;
     }
   }
 }
