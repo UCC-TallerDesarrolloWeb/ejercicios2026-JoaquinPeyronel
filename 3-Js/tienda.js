@@ -1,3 +1,4 @@
+
 const productos = [
   {
     nombre: "Cabezal Sparring",
@@ -41,8 +42,7 @@ const productos = [
   },
   {
     nombre: "Guantes 10 onzas",
-    description:
-      "Guantes de Sparring de 10 onzas habilitados para torneos internacionales",
+    description: "Guantes de Sparring de 10 onzas habilitados para torneos internacionales",
     categoria: "Protectores",
     marca: "Daedo",
     talle: ["s/talle"],
@@ -62,12 +62,16 @@ const productos = [
   },
 ];
 
+// MOSTRAR PRODUCTOS DEL CATÁLOGO
+
 const mostrarProductos = () => {
   const contenedor = document.getElementById("contenedorProductos");
 
   if (!contenedor) {
     return;
   }
+
+  contenedor.innerHTML = "";
 
   productos.forEach((producto, indice) => {
     const tarjeta = document.createElement("div");
@@ -91,6 +95,8 @@ const mostrarProductos = () => {
     contenedor.appendChild(tarjeta);
   });
 };
+
+// MOSTRAR DETALLE DEL PRODUCTO
 
 const abrirDialog = (indice) => {
   const producto = productos[indice];
@@ -121,6 +127,8 @@ const cerrarDialog = () => {
   document.getElementById("detalleProducto").close();
 };
 
+// AGREGAR PRODUCTO AL CARRITO
+
 const agregarAlCarrito = (indice) => {
   const producto = productos[indice];
 
@@ -133,6 +141,8 @@ const agregarAlCarrito = (indice) => {
   alert("Producto agregado al carrito");
 };
 
+// MOSTRAR PRODUCTOS DEL CARRITO
+
 const mostrarCarrito = () => {
   const contenedor = document.getElementById("contenedorCarrito");
 
@@ -142,7 +152,14 @@ const mostrarCarrito = () => {
 
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-  carrito.forEach((producto) => {
+  contenedor.innerHTML = "";
+
+  if (carrito.length === 0) {
+    contenedor.innerHTML = "<p>El carrito está vacío.</p>";
+    return;
+  }
+
+  carrito.forEach((producto, indice) => {
     const tarjeta = document.createElement("div");
 
     tarjeta.className = "tarjeta";
@@ -151,11 +168,37 @@ const mostrarCarrito = () => {
       <img src="${producto.imagen}" alt="${producto.nombre}">
       <h3>${producto.nombre}</h3>
       <p>Precio: $${producto.precio}</p>
+
+      <button onclick="eliminarProducto(${indice})">
+        Eliminar producto
+      </button>
     `;
 
     contenedor.appendChild(tarjeta);
   });
 };
+
+// VACIAR TODO EL CARRITO
+
+const vaciarCarrito = () => {
+  localStorage.removeItem("carrito");
+
+  mostrarCarrito();
+};
+
+// ELIMINAR UN PRODUCTO DEL CARRITO
+
+const eliminarProducto = (indice) => {
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  carrito.splice(indice, 1);
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+
+  mostrarCarrito();
+};
+
+// CARGAR LA PÁGINA
 
 window.onload = () => {
   mostrarProductos();
