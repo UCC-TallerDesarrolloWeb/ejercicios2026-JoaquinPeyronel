@@ -1,33 +1,41 @@
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Header({ logueado, cerrarSesion }) {
-  const navigate = useNavigate();
-
-  const logout = () => {
-    cerrarSesion();
-    navigate("/login");
-  };
-
   return (
     <header className="header">
-      <div className="header-contenido">
-        <h2>Mi Aplicación React</h2>
+      <h1>Mi aplicación React</h1>
 
-        <nav>
-          <NavLink to="/">Home</NavLink>
+      <nav>
+        <NavLink to="/">
+          Home
+        </NavLink>
 
-          <NavLink to="/login">Login</NavLink>
+        <NavLink to="/actividades">
+          Actividades
+        </NavLink>
 
-          <NavLink to="/actividades">Actividades</NavLink>
+        <NavLink to="/poke">
+          Pokémon
+        </NavLink>
 
-          {logueado && (
-            <button onClick={logout}>
-              Logout
-            </button>
-          )}
-        </nav>
-      </div>
+        <NavLink to="/store">
+          Tienda
+        </NavLink>
+
+        {logueado ? (
+          <button
+            type="button"
+            onClick={cerrarSesion}
+          >
+            Cerrar sesión
+          </button>
+        ) : (
+          <NavLink to="/login">
+            Login
+          </NavLink>
+        )}
+      </nav>
     </header>
   );
 }

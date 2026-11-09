@@ -1,0 +1,90 @@
+
+{
+  "productos": [
+    {
+      "id": "1",
+      "nombre": "Cabezal Sparring",
+      "descripcion": "Cabezal cerrado para entrenamientos de sparring.",
+      "categoria": "Protectores",
+      "marca": "Gran Marc",
+      "precio": 35000,
+      "imagen": "https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/cabezal-cerrado.webp"
+    },
+    {
+      "id": "2",
+      "nombre": "Dobok Dan",
+      "descripcion": "Dobok aprobado para torneos internacionales.",
+      "categoria": "Dobok",
+      "marca": "Daedo",
+      "precio": 115000,
+      "imagen": "https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/dobok.webp"
+    },
+    {
+      "id": "3",
+      "nombre": "Escudo de Potencia",
+      "descripcion": "Escudo de potencia grande para entrenamientos.",
+      "categoria": "Entrenamiento",
+      "marca": "Gran Marc",
+      "precio": 51700,
+      "imagen": "https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/escudo-potencia.webp"
+    },
+    {
+      "id": "4",
+      "nombre": "Par de focos redondos",
+      "descripcion": "Focos para practicar golpes y patadas.",
+      "categoria": "Entrenamiento",
+      "marca": "Gran Marc",
+      "precio": 15000,
+      "imagen": "https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/foco-con-dedos.webp"
+    },
+    {
+      "id": "5",
+      "nombre": "Guantes 10 onzas",
+      "descripcion": "Guantes de sparring habilitados para torneos.",
+      "categoria": "Protectores",
+      "marca": "Daedo",
+      "precio": 35000,
+      "imagen": "https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/protectores-manos.webp"
+    },
+    {
+      "id": "6",
+      "nombre": "Protectores Pie",
+      "descripcion": "Protectores de pie para competición.",
+      "categoria": "Protectores",
+      "marca": "Daedo",
+      "precio": 35000,
+      "imagen": "https://ucc-tallerdesarrolloweb.github.io/filminas/images/ejercicios/protectores-pie.webp"
+    }
+  ],
+  "activities": [
+    {
+      "id": "1",
+      "nombre": "taekwondo",
+      "descripcion": "Arte marcial coreana",
+      "horarios": [
+        {
+          "dia": 2,
+          "hora-inicio": "18:30",
+          "hora-fin": "20:00"
+        },
+        {
+          "dia": 4,
+          "hora-inicio": "18:30",
+          "hora-fin": "20:00"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "nombre": "zumba",
+      "descripcion": "Ritmos latinos",
+      "horarios": [
+        {
+          "dia": 1,
+          "hora-inicio": "19:30",
+          "hora-fin": "20:30"
+        }
+      ]
+    }
+  ]
+}
