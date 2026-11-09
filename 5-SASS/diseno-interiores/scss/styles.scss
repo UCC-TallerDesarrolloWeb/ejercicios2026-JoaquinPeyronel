@@ -1,8 +1,14 @@
+
 @use "sass:meta";
+
+// VARIABLES
+
 $color-naranja: #f47700;
 $color-blanco: #ffffff;
 $color-negro: #000000;
 $color-gris: #777777;
+
+// ESTILOS GENERALES
 
 * {
     box-sizing: border-box;
@@ -159,6 +165,6 @@ footer {
     }
 }
 
-// ESTILOS RESPONSIVE
+// ESTILOS MOBILE
 
 @include meta.load-css("mobile");
