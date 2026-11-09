@@ -1,16 +1,21 @@
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./styles/Login.scss";
 
 function Login() {
   const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const ingresar = (evento) => {
     evento.preventDefault();
 
     if (usuario === "admin" && password === "admin") {
       console.log("Login OK");
+
+      navigate("/actividades");
     } else {
       console.log("Login Incorrecto");
     }
