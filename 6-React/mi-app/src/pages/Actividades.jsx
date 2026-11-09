@@ -1,6 +1,6 @@
 
 import { useNavigate, useOutletContext } from "react-router-dom";
-import "./styles/Actividades.scss";
+import "@/styles/Actividades.scss";
 
 const activities = [
   {

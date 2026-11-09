@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 
-import "./styles/Login.scss";
+import "@/styles/Login.scss";
 
 function Login() {
   const [usuario, setUsuario] = useState("");
@@ -16,7 +16,6 @@ function Login() {
 
     if (usuario === "admin" && password === "admin") {
       console.log("Login OK");
-
       iniciarSesion();
       navigate("/actividades");
     } else {
@@ -47,9 +46,7 @@ function Login() {
           required
         />
 
-        <button type="submit">
-          Entrar
-        </button>
+        <button type="submit">Entrar</button>
       </form>
     </div>
   );

@@ -2,9 +2,9 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
-import Header from "./Header";
-import Footer from "./Footer";
-import "./styles/Layout.scss";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import "@/styles/Layout.scss";
 
 function Layout() {
   const [logueado, setLogueado] = useState(false);
