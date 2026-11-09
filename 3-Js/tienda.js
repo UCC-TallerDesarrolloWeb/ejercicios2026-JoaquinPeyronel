@@ -91,8 +91,8 @@ const mostrarProductos = (listaProductos = productos) => {
 
   listaProductos.forEach((producto) => {
     const indice = productos.indexOf(producto);
-
     const tarjeta = document.createElement("div");
+
     tarjeta.className = "tarjeta";
 
     tarjeta.innerHTML = `
@@ -116,11 +116,12 @@ const mostrarProductos = (listaProductos = productos) => {
 // FILTRAR PRODUCTOS
 
 const filtrarProductos = () => {
-  const palabra = document.getElementById("buscar").value.toLowerCase().trim();
+  const palabra = document.getElementById("buscar").value
+    .toLowerCase()
+    .trim();
 
   const minimoTexto = document.getElementById("minimo").value;
   const maximoTexto = document.getElementById("maximo").value;
-
   const marca = document.getElementById("marca").value;
 
   const categorias = Array.from(
@@ -141,7 +142,8 @@ const filtrarProductos = () => {
       marca === "" || producto.marca === marca;
 
     const coincideCategoria =
-      categorias.length === 0 || categorias.includes(producto.categoria);
+      categorias.length === 0 ||
+      categorias.includes(producto.categoria);
 
     return (
       coincidePalabra &&
@@ -186,12 +188,12 @@ const cerrarDialog = () => {
   document.getElementById("detalleProducto").close();
 };
 
-// AGREGAR PRODUCTOS AL CARRITO
+// AGREGAR PRODUCTO AL CARRITO
 
 const agregarAlCarrito = (indice) => {
   const producto = productos[indice];
 
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
   carrito.push(producto);
 
@@ -229,28 +231,69 @@ const mostrarCarrito = () => {
 
   contenedor.innerHTML = "";
 
-  if (carrito.length === 0) {
+  // Agrupar los productos repetidos y contar sus unidades.
+
+  const productosAgrupados = [];
+
+  carrito.forEach((producto) => {
+    const existente = productosAgrupados.find(
+      (item) => item.nombre === producto.nombre
+    );
+
+    if (existente) {
+      existente.cantidad++;
+    } else {
+      productosAgrupados.push({
+        ...producto,
+        cantidad: 1,
+      });
+    }
+  });
+
+  // Mostrar una tarjeta por cada producto diferente.
+
+  if (productosAgrupados.length === 0) {
     contenedor.innerHTML = "<p>El carrito está vacío.</p>";
-    actualizarContadorCarrito();
-    return;
+  } else {
+    productosAgrupados.forEach((producto) => {
+      const tarjeta = document.createElement("div");
+
+      tarjeta.className = "tarjeta";
+
+      const subtotal = producto.precio * producto.cantidad;
+
+      tarjeta.innerHTML = `
+        <img src="${producto.imagen}" alt="${producto.nombre}">
+
+        <h3>${producto.nombre}</h3>
+
+        <p>Precio unitario: ${formatearPrecio(producto.precio)}</p>
+
+        <p><strong>Cantidad: ${producto.cantidad}</strong></p>
+
+        <p>Subtotal: ${formatearPrecio(subtotal)}</p>
+
+        <button onclick='eliminarProducto(${JSON.stringify(producto.nombre)})'>
+          Eliminar una unidad
+        </button>
+      `;
+
+      contenedor.appendChild(tarjeta);
+    });
   }
 
-  carrito.forEach((producto, indice) => {
-    const tarjeta = document.createElement("div");
-    tarjeta.className = "tarjeta";
+  // Calcular el total de todos los productos.
 
-    tarjeta.innerHTML = `
-      <img src="${producto.imagen}" alt="${producto.nombre}">
-      <h3>${producto.nombre}</h3>
-      <p>Precio: ${formatearPrecio(producto.precio)}</p>
+  const total = carrito.reduce(
+    (acumulador, producto) => acumulador + producto.precio,
+    0
+  );
 
-      <button onclick="eliminarProducto(${indice})">
-        Eliminar producto
-      </button>
-    `;
+  const cantidad = carrito.length;
 
-    contenedor.appendChild(tarjeta);
-  });
+  document.getElementById("cantidadProductos").textContent = cantidad;
+  document.getElementById("totalCarrito").textContent =
+    formatearPrecio(total);
 
   actualizarContadorCarrito();
 };
@@ -261,20 +304,24 @@ const vaciarCarrito = () => {
   localStorage.removeItem("carrito");
 
   mostrarCarrito();
-  actualizarContadorCarrito();
 };
 
-// ELIMINAR PRODUCTO
+// ELIMINAR UNA UNIDAD DE UN PRODUCTO
 
-const eliminarProducto = (indice) => {
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+const eliminarProducto = (nombre) => {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-  carrito.splice(indice, 1);
+  const indice = carrito.findIndex(
+    (producto) => producto.nombre === nombre
+  );
+
+  if (indice !== -1) {
+    carrito.splice(indice, 1);
+  }
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
 
   mostrarCarrito();
-  actualizarContadorCarrito();
 };
 
 // CARGAR PÁGINA
