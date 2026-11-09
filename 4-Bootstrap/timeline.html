@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline - Bootstrap</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+        crossorigin="anonymous">
+
+    <style>
+        .timeline {
+            min-width: 750px;
+        }
+
+        .tarea {
+            width: 40%;
+        }
+
+        .tarea-1 {
+            margin-left: 2%;
+        }
+
+        .tarea-2 {
+            margin-left: 26%;
+        }
+
+        .tarea-3 {
+            margin-left: 42%;
+        }
+
+        .avatar {
+            width: 30px;
+            height: 30px;
+            background-color: #ffc107;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container mt-5">
+
+        <h2 class="text-center mb-4">Timeline de Proyecto</h2>
+
+        <div class="overflow-auto">
+
+            <div class="timeline border p-1">
+
+                <!-- MESES -->
+
+                <div class="row g-0 bg-black text-white text-center">
+
+                    <div class="col-6 border border-light py-2 fw-bold">
+                        Enero
+                    </div>
+
+                    <div class="col-6 border border-light py-2 fw-bold">
+                        Febrero
+                    </div>
+
+                </div>
+
+                <!-- SEMANAS -->
+
+                <div class="row g-0 bg-black text-white text-center">
+
+                    <div class="col border border-light py-2">
+                        Semana 1
+                    </div>
+
+                    <div class="col border border-light py-2">
+                        Semana 2
+                    </div>
+
+                    <div class="col border border-light py-2">
+                        Semana 3
+                    </div>
+
+                    <div class="col border border-light py-2">
+                        Semana 4
+                    </div>
+
+                    <div class="col border border-light py-2">
+                        Semana 1
+                    </div>
+
+                    <div class="col border border-light py-2">
+                        Semana 2
+                    </div>
+
+                    <div class="col border border-light py-2">
+                        Semana 3
+                    </div>
+
+                    <div class="col border border-light py-2">
+                        Semana 4
+                    </div>
+
+                </div>
+
+                <!-- TAREAS -->
+
+                <div class="p-3">
+
+                    <!-- TAREA 1 -->
+
+                    <div class="tarea tarea-1 bg-secondary text-white rounded-2 p-2 mb-3">
+
+                        <div class="d-flex justify-content-between align-items-center gap-2">
+
+                            <div>
+                                <div class="text-info fw-bold fs-6">
+                                    Completed
+                                </div>
+
+                                <div class="fw-bold">
+                                    Define Architecture
+                                </div>
+
+                                <div class="opacity-75 small">
+                                    20 Enero
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-1">
+
+                                <div class="avatar rounded-circle d-flex align-items-center justify-content-center">
+                                    👩
+                                </div>
+
+                                <div class="avatar rounded-circle d-flex align-items-center justify-content-center">
+                                    👩
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- TAREA 2 -->
+
+                    <div class="tarea tarea-2 bg-secondary text-white rounded-2 p-2 mb-3">
+
+                        <div class="d-flex justify-content-between align-items-center gap-2">
+
+                            <div>
+                                <div class="text-warning fw-bold fs-6">
+                                    In Progress
+                                </div>
+
+                                <div class="fw-bold">
+                                    Define Architecture
+                                </div>
+
+                                <div class="opacity-75 small">
+                                    20 Enero
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-1">
+
+                                <div class="avatar rounded-circle d-flex align-items-center justify-content-center">
+                                    👩
+                                </div>
+
+                                <div class="avatar rounded-circle d-flex align-items-center justify-content-center">
+                                    👩
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- TAREA 3 -->
+
+                    <div class="tarea tarea-3 bg-secondary text-white rounded-2 p-2 mb-3">
+
+                        <div class="d-flex justify-content-between align-items-center gap-2">
+
+                            <div>
+                                <div class="text-danger fw-bold fs-6">
+                                    Blocked
+                                </div>
+
+                                <div class="fw-bold">
+                                    Define Architecture
+                                </div>
+
+                                <div class="opacity-75 small">
+                                    20 Enero
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-1">
+
+                                <div class="avatar rounded-circle d-flex align-items-center justify-content-center">
+                                    👩
+                                </div>
+
+                                <div class="avatar rounded-circle d-flex align-items-center justify-content-center">
+                                    👩
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
